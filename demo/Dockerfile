@@ -1,6 +1,7 @@
 # 1. ビルド用の環境（Java 17）を用意
 FROM eclipse-temurin:17-jdk-jammy as build
 COPY . .
+RUN chmod +x mvnw
 # Mavenを使ってビルド（実行ファイルを作成）
 RUN ./mvnw clean install -DskipTests
 
