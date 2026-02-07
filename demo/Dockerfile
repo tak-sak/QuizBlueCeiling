@@ -1,12 +1,12 @@
 # 1. ビルド用の環境（Java 17）を用意
-FROM eclipse-temurin:17-jdk-jammy as build
+FROM eclipse-temurin:21-jdk-jammy as build
 COPY . .
 RUN chmod +x mvnw
 # Mavenを使ってビルド（実行ファイルを作成）
 RUN ./mvnw clean install -DskipTests
 
 # 2. 実行用の軽量環境を用意
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 # ビルドした実行ファイル（jar）をコピー
 COPY --from=build /target/*.jar app.jar
 # アプリを起動
