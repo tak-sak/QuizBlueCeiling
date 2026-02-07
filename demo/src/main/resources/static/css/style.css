@@ -1,0 +1,130 @@
+/* 1. ベースレイアウト */
+body {
+    background-color: #000814;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transition: filter 0.5s ease-in-out;
+}
+
+.quiz-card {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 95%;
+    max-width: 650px;
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.4);
+}
+
+/* 2. キャラクター画像設定 */
+.char-img-small {
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #eee;
+}
+
+/* 3. メッセージエリア（吹き出しの角なし・シンプルスタイル） */
+.bubble {
+    position: relative;
+    padding: 1.5rem; /* 余白を少し広げてゆったりと */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+/* 司会者側（問題文）：最小値をさらに大きくし、高さを安定させる */
+.bubble-left {
+    background-color: #f0f7ff !important;
+    border: 2px solid #007bff;
+    margin-left: 10px;
+    color: #333;
+    min-height: 160px; /* ここを大きくしました */
+}
+
+/* 回答者側（選択肢）：ボタンの数で高さが変わるため、柔軟に */
+.bubble-right {
+    background-color: #f9f9f9 !important;
+    border: 2px solid #6c757d;
+    margin-right: 10px;
+    color: #333;
+    min-height: 120px;
+}
+
+/* 角（::after）を削除しました */
+
+/* 4. 選択肢ボタン */
+#quiz-form {
+    width: 100%;
+}
+
+.btn-answer {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    margin-bottom: 8px; /* ボタン間の余白を調整 */
+    transition: all 0.2s ease;
+    color: #333 !important;
+    font-size: 0.95rem;
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.btn-answer:hover {
+    background-color: #007bff;
+    color: white !important;
+    border-color: #007bff;
+}
+
+/* 5. 演出・エフェクト */
+.invert {
+    filter: invert(100%) hue-rotate(180deg);
+    transition: filter 0.1s;
+}
+
+#effect-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+#result-image {
+    max-width: 60%;
+    animation: popin 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popin {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ロゴのサイズ調整 */
+.logo-img-adjust {
+    max-width: 100%;    /* 親要素(quiz-card)からはみ出さない */
+    height: auto;
+    width: 350px;       /* ちょうどいい大きさに固定（お好みで調整してください） */
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+/* STARTボタンの強調（btn-answerをベースに） */
+.btn-answer.fs-4:hover {
+    background-color: #007bff;
+    color: white !important;
+    transform: scale(1.05); /* 少し大きくしてワクワク感を出す */
+}
